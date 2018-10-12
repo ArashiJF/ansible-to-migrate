@@ -1,4 +1,4 @@
-Building a simple LAMP stack and deploying Application using Ansible Playbooks.
+Migrating this to ubuntu!
 -------------------------------------------
 
 These playbooks require Ansible 1.2.
@@ -16,11 +16,23 @@ This LAMP stack can be on a single node or multiple nodes. The inventory file
         [dbservers]
         bensible
 
+
+For the task of migrating from centos to ubuntu, our hosts are as follow:
+
+        [webservers]
+        web3
+        
+        [dbservers]
+        web2
+
+
 Here the webserver would be configured on the local host and the dbserver on a
 server called "bensible". The stack can be deployed using the following
 command:
 
         ansible-playbook -i hosts site.yml
+
+This command still launches all dependencies with ansible, feel free to use it.
 
 Once done, you can check the results by browsing to http://localhost/index.php.
 You should see a simple test page and a list of databases retrieved from the
