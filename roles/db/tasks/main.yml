@@ -16,6 +16,10 @@
 - name: Start Mysql Service
   service: name=mysql state=started enabled=yes
 
+- name: ufw para denegar ips
+  command: ufw deny incoming
+  command: ufw deny outgoing
+
 - name: insert iptables rule
   lineinfile: dest=/etc/networks state=present regexp="{{ mysql_port }}"
               insertafter="^:OUTPUT " line="-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
