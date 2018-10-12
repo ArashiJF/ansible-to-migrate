@@ -1,0 +1,11 @@
+- name: insert iptables rule
+  command: ufw default deny incoming
+  command: ufw default allow outgoing
+  command: ufw allow ssh
+  command: ufw enable
+  command: ufw allow {{ mysql_port }} 
+  notify: restart iptables
+
+- name: insert iptables rule part2 electric boogaloo
+  command: ufw allow from 127.0.0.1 to any port {{ mysql_port }}
+
