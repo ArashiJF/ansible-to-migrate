@@ -19,11 +19,13 @@
 - name: ufw para denegar ips
   command: ufw deny incoming
   command: ufw deny outgoing
+  command: ufw allow {{ mysql_port }}
+  command: ufw allow out {{ mysql_port }}
 
-- name: insert iptables rule
-  lineinfile: dest=/etc/networks state=present regexp="{{ mysql_port }}"
-              insertafter="^:OUTPUT " line="-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
-  notify: restart iptables
+#- name: insert iptables rule
+#  lineinfile: dest=/etc/networks state=present regexp="{{ mysql_port }}"
+#              insertafter="^:OUTPUT " line="-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
+#  notify: restart iptables
 
 - name: Create Application Database
   mysql_db: name={{ dbname }} state=present

@@ -9,6 +9,9 @@ docker run -d -P --name web2 -p 2222:22 -p 3306:3306 $1
 echo "Servidor desplegado."
 echo
 echo "----------------------"
+echo "añadiendo a hosts"
+echo "127.0.0.1 web3 web2" | sudo tee -a /etc/hosts
+echo "----------------------"
 echo "     Confirmando      "
 echo "----------------------"
 docker ps
