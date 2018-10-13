@@ -29,7 +29,12 @@ To build the dockers, move to the server directory and type the following comman
         docker build -t server:16.04 .
 
 To launch the containers type the following command in the root folder:
+        
         ./create_dockers.sh server:16.04
+
+Add the hosts to the /etc/hosts file
+        
+        echo "127.0.0.1 web3 web2" | sudo tee -a /etc/hosts
 
 Here the webserver would be configured on the local host and the dbserver on a
 server called "bensible". The stack can be deployed using the following
