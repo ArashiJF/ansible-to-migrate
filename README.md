@@ -28,6 +28,8 @@ For the task of migrating from centos to ubuntu, our hosts are as follow:
 To build the dockers, move to the server directory and type the following command:
         docker build -t server:16.04 .
 
+To launch the containers type the following command in the root folder:
+        ./create_dockers.sh server:16.04
 
 Here the webserver would be configured on the local host and the dbserver on a
 server called "bensible". The stack can be deployed using the following
