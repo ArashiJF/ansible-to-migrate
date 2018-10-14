@@ -16,11 +16,9 @@
 - name: Start Mysql Service
   service: name=mysql state=started enabled=yes
 
-- name: ufw para denegar ips
-  command: ufw deny incoming
-  command: ufw deny outgoing
-  command: ufw allow {{ mysql_port }}
-  command: ufw allow out {{ mysql_port }}
+#- name: ufw iptables
+#  ufw: rule=allow port={{ mysql_port }} proto=tcp
+#  sudo: true
 
 #- name: insert iptables rule
 #  lineinfile: dest=/etc/networks state=present regexp="{{ mysql_port }}"
@@ -28,7 +26,7 @@
 #  notify: restart iptables
 
 - name: Create Application Database
-  mysql_db: name={{ dbname }} state=present
+  mysql_db: name={{ dbname }} state=present login_user={{ dbuser }} login_password={{ upassword }}
 
 - name: Create Application DB User
   mysql_user: name={{ dbuser }} password={{ upassword }} priv=*.*:ALL host='%' state=present

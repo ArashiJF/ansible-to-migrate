@@ -6,7 +6,7 @@
   remote_user: root
 
   roles:
-    - common
+    - common 
 
 - name: configure and deploy the webservers and application code
   hosts: webservers
@@ -21,3 +21,4 @@
 
   roles:
     - db
+

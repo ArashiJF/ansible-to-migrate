@@ -1,11 +1,16 @@
 FROM ubuntu:16.04
 
 RUN apt-get update
+RUN apt-get upgrade -y
+
+RUN apt-get install -y ufw
+
+RUN ufw default allow incoming
+RUN ufw default allow outgoing
+#RUN sudo ufw allow 22
 
 RUN apt-get install -y openssh-server python
 RUN mkdir /var/run/sshd
-
-#RUN apt-get install -y selinux
 
 COPY authorized_keys /root/.ssh/authorized_keys
 

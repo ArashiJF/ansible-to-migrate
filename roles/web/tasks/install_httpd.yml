@@ -3,24 +3,23 @@
 
 - name: Install http and php etc
   apt: name={{ item }} state=present
+
   with_items:
    - apache2
    - php
    - php-mysql
    - git
 
-- name: commands for httpd and iptables
-  command: ufw deny incoming
-  command: ufw deny outgoing
-  command: ufw allow {{ httpd_port }}
-  command: ufw allow out {{ httpd_port }}
+#- name: ufw iptables
+#  ufw: rule=allow port={{ httpd_port }} proto=tcp
+#  notify: restart iptables
 
 #- name: insert iptables rule for httpd
 #  lineinfile: dest=/etc/sysconfig/iptables create=yes state=present regexp="{{ httpd_port }}" #insertafter="^:OUTPUT "
 #              line="-A INPUT -p tcp  --dport {{ httpd_port }} -j  ACCEPT"
 #  notify: restart iptables
 
-- name: http service state
+- name: httpd service state
   service: name=apache2 state=started enabled=yes
 
 
